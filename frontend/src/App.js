@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import loginService from './services/login'
 import userService from './services/user'
 import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 import { useSelector, useDispatch } from 'react-redux'
 import store from './store'
 import { Button } from 'react-bootstrap'
@@ -27,11 +28,18 @@ const App = () => {
             userService.setUser(user)
         }).catch(() => {
             console.log('user: ', user)
-            console.log(userService.setUser);
+            console.log(userService.setUser)
             console.log('wrong username/password', 'alert')
         })
     }
 
+    const signup = async (username, name, password) => {
+        try {
+            await userService.signup({ username, name, password })
+        } catch (error) {
+            console.log('signup error: ', error)
+        }
+    }
     const logout = () => {
         setUser(null)
         userService.clearUser()
@@ -39,9 +47,12 @@ const App = () => {
     }
 
     if (user === null) {
-        return <div className='container'>
-            <LoginForm onLogin={login} />
-        </div>
+        return (
+            <div className='container'>
+                <LoginForm onLogin={login} />
+                <SignupForm onSignup={signup} />
+            </div>
+        )
     }
 
     return (
