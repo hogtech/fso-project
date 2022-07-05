@@ -14,7 +14,8 @@ const config = () => {
 const getAll = () => {
     console.log('inside getAll()')
     const request = axios.get(baseUrl)
-    return request.then(response => response.data)
+    console.log('request: ', request);
+    return request.data/* .then(response => response.data) */
 }
 
 /* const createNew = async newObject => {
