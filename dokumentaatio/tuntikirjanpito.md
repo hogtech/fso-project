@@ -8,6 +8,8 @@
 | 		| 1,5  | Course: model, controller, service|
 | 5.7.22| 2    | Course: service
 | 		| 1,5  | Coursen implementointi|
+| 		| 2,5  | Coursen implementointi, courseReducer|
+| 		| 2    | App.js/course debuggaus, courseReducer|
 | 		|      | |
 | 		|      | |
 | 		|      | |
@@ -15,6 +17,4 @@
 | 		|      | |
 | 		|      | |
 | 		|      | |
-| 		|      | |
-| 		|      | |
-| yht   | 9,5  | | 
+| yht   | 12   | | 
