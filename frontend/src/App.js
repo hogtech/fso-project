@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 
 import loginService from './services/login'
 import userService from './services/user'
+import courseService from './services/course'
 
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
@@ -12,6 +13,7 @@ const App = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState(null)
+    const [courses, setCourses] = useState(null)
 
     useEffect(() => {
         const userFromStorage = userService.getUser()
@@ -20,6 +22,11 @@ const App = () => {
         }
     }, [])
 
+    useEffect(() => {
+        const courses = courseService.getAll()
+        console.log('courses: ', courses);
+        setCourses(courses)
+    }, [])
     const login = async (username, password) => {
         loginService.login({
             username, password,
@@ -63,6 +70,8 @@ const App = () => {
                 {user.name} logged in&nbsp;
                 <Button variant='info' onClick={logout}>logout</Button>
             </div>
+            <h2>courses</h2>
+            {courses.toString()}
         </div>
     )
 }
