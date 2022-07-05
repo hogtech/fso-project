@@ -9,12 +9,14 @@ import SignupForm from './components/SignupForm'
 import { useSelector, useDispatch } from 'react-redux'
 import store from './store'
 import { Button } from 'react-bootstrap'
+import axios from 'axios'
 const App = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState(null)
     const [courses, setCourses] = useState(null)
 
+    //const courses = useSelector(state => state.courses)
     useEffect(() => {
         const userFromStorage = userService.getUser()
         if (userFromStorage) {
@@ -27,6 +29,11 @@ const App = () => {
     }, [])
 
     const getCourses = async () => {
+        console.log('inside getCourses, course: ', courses)
+        //const allCourses = await courseService.getAll()
+        //setCourses(allCourses)
+        //console.log('inside getCourses 2, allCourses: ', allCourses)
+        console.log('inside getCourses 2, course: ', courses)
         console.log('inside getCourses');
         courseService.getAll()
             .then(courses => {
@@ -72,18 +79,30 @@ const App = () => {
             </div>
         )
     }
-
-    return (
-        <div className='container'>
-            <h2>users</h2>
-            <div>
-                {user.name} logged in&nbsp;
-                <Button variant='info' onClick={logout}>logout</Button>
+    if (courses) {
+        return (
+            <div className='container'>
+                <h2>users</h2>
+                <div>
+                    {user.name} logged in&nbsp;
+                    <Button variant='info' onClick={logout}>logout</Button>
+                </div>
+                <h2>courses</h2>
+                {console.log('above map, courses: ', courses)}
+                <div>{courses.map((course) => (
+                    <div key={course.id}>
+                        <b>{course.name}</b><br></br>
+                        {course.description}
+                    </div>
+                ))}
+                </div>
             </div>
-            <h2>courses</h2>
-
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div></div>
+        )
+    }
 }
 
 export default App

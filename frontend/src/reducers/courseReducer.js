@@ -6,19 +6,20 @@ const courseSlice = createSlice({
     initialState: [],
     reducers: {
 
-        setBlogs(state, action) {
+        setCourses(state, action) {
+            console.log('setCourses: ', action.payload);
             return action.payload
         },
     }
 })
 
-export const initializeBlogs = () => {
-    //console.log('initializeBlogs: ')
+export const initializeCourses = () => {
+    console.log('inside initializeCourses');
     return async dispatch => {
-        const blogs = await blogService.getAll()
-        dispatch(setBlogs(blogs))
+        const courses = await courseService.getAll()
+        dispatch(setCourses(courses))
     }
 }
 
-export const { setBlogs } = blogSlice.actions
+export const { setCourses } = courseSlice.actions
 export default courseSlice.reducer
