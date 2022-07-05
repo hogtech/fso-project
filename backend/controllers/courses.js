@@ -2,14 +2,24 @@ const router = require('express').Router()
 const User = require('../models/user')
 const Course = require('../models/course')
 router.get('/', async (request, response) => {
-    console.log('inside controller courses');
-    const blogs = await Blog
+    console.log('inside controller courses')
+    const courses = await Course
         .find({})
-        /* .find({}).populate('user', { username: 1, name: 1 } */)
 
-response.json(blogs)
+    response.json(courses)
 })
 
+router.post('/', async (request, response) => {
+    console.log('inside courses controller post')
+    const { name, description } = request.body
+    const course = new Course({
+        name,
+        description
+
+    })
+    const savedCourse = await course.save()
+    response.status(201).json(savedCourse)
+})
 /* router.post('/', async (request, response) => {
     const { username, name, password } = request.body
 
