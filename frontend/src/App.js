@@ -23,10 +23,20 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-        const courses = courseService.getAll()
-        console.log('courses: ', courses);
-        setCourses(courses)
+        getCourses()
     }, [])
+
+    const getCourses = async () => {
+        console.log('inside getCourses');
+        courseService.getAll()
+            .then(courses => {
+                setCourses(courses)
+                console.log('getCourses courses: ', courses);
+            })
+            .catch((e) => {
+                console.log('getCourses error: ', e);
+            })
+    }
     const login = async (username, password) => {
         loginService.login({
             username, password,
@@ -71,7 +81,7 @@ const App = () => {
                 <Button variant='info' onClick={logout}>logout</Button>
             </div>
             <h2>courses</h2>
-            {courses.toString()}
+
         </div>
     )
 }
