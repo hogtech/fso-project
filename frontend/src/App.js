@@ -6,11 +6,16 @@ import courseService from './services/course'
 
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
+import CourseForm from './components/CourseForm'
 import { useSelector, useDispatch } from 'react-redux'
 import store from './store'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import { initializeCourses } from './reducers/courseReducer'
+import {
+    BrowserRouter as Router,
+    Routes, Route, Link, useNavigate
+} from "react-router-dom"
 const App = () => {
     const dispatch = useDispatch()
 
@@ -68,6 +73,10 @@ const App = () => {
             console.log('signup error: ', error)
         }
     }
+
+    const edit = () => {
+        console.log('edit here')
+    }
     const logout = () => {
         setUser(null)
         userService.clearUser()
@@ -82,22 +91,32 @@ const App = () => {
             </div>
         )
     }
-
+    const padding = {
+        paddingRight: 5
+    }
     return (
-        <div className='container'>
-            <h2>users</h2>
+        <div>
             <div>
-                {user.name} logged in&nbsp;
-                <Button variant='info' onClick={logout}>logout</Button>
+                <Link style={padding} to="/">anecdotes</Link>
+                <Link style={padding} to="/create">create new</Link>
+                <Link style={padding} to="/about">about</Link>
             </div>
-            <h2>courses</h2>
-            {console.log('above map, courses: ', courses)}
-            <div>{courses.map((course) => (
-                <div key={course.id}>
-                    <b>{course.name}</b><br></br>
-                    {course.description}
+            <div className='container'>
+                <h2>users</h2>
+                <div>
+                    {user.name} logged in&nbsp;
+                    <Button variant='info' onClick={logout}>logout</Button>
                 </div>
-            ))}
+                <h2>courses</h2>
+                {console.log('above map, courses: ', courses)}
+                <div>{courses.map((course) => (
+                    <div key={course.id}>
+                        <b>{course.name}</b><br></br>
+                        {course.description}
+                    </div>
+                ))}
+                </div>
+                <CourseForm></CourseForm>
             </div>
         </div>
     )
