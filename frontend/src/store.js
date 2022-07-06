@@ -6,7 +6,7 @@ import courseReducer from './reducers/courseReducer'
 const store = configureStore({
     reducer: {
         user: userReducer,
-        course: courseReducer
+        courses: courseReducer
     }
 })
 

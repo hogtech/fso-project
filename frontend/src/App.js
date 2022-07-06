@@ -10,11 +10,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import store from './store'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
+import { initializeCourses } from './reducers/courseReducer'
 const App = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState(null)
-    const [courses, setCourses] = useState(null)
+    //const [courses, setCourses] = useState(null)
+    const courses = useSelector(state => state.courses)
 
     //const courses = useSelector(state => state.courses)
     useEffect(() => {
@@ -25,24 +27,25 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-        getCourses()
+        dispatch(initializeCourses())
+        //getCourses()
     }, [dispatch])
 
     const getCourses = async () => {
         console.log('inside getCourses, course: ', courses)
-        //const allCourses = await courseService.getAll()
+        const allCourses = await courseService.getAll()
         //setCourses(allCourses)
-        //console.log('inside getCourses 2, allCourses: ', allCourses)
-        console.log('inside getCourses 2, course: ', courses)
+        console.log('this should be 3 objects, allCourses: ', allCourses)
+        console.log('this should also be 3 objects, courses: ', courses)
         console.log('inside getCourses');
-        courseService.getAll()
-            .then(courses => {
-                setCourses(courses)
-                console.log('getCourses courses: ', courses);
-            })
-            .catch((e) => {
-                console.log('getCourses error: ', e);
-            })
+        /*  courseService.getAll()
+             .then(courses => {
+                 setCourses(courses)
+                 console.log('getCourses courses: ', courses);
+             })
+             .catch((e) => {
+                 console.log('getCourses error: ', e);
+             }) */
     }
     const login = async (username, password) => {
         loginService.login({
@@ -79,30 +82,25 @@ const App = () => {
             </div>
         )
     }
-    if (courses) {
-        return (
-            <div className='container'>
-                <h2>users</h2>
-                <div>
-                    {user.name} logged in&nbsp;
-                    <Button variant='info' onClick={logout}>logout</Button>
-                </div>
-                <h2>courses</h2>
-                {console.log('above map, courses: ', courses)}
-                <div>{courses.map((course) => (
-                    <div key={course.id}>
-                        <b>{course.name}</b><br></br>
-                        {course.description}
-                    </div>
-                ))}
-                </div>
+
+    return (
+        <div className='container'>
+            <h2>users</h2>
+            <div>
+                {user.name} logged in&nbsp;
+                <Button variant='info' onClick={logout}>logout</Button>
             </div>
-        )
-    } else {
-        return (
-            <div>fault</div>
-        )
-    }
+            <h2>courses</h2>
+            {console.log('above map, courses: ', courses)}
+            <div>{courses.map((course) => (
+                <div key={course.id}>
+                    <b>{course.name}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+        </div>
+    )
 }
 
 export default App
