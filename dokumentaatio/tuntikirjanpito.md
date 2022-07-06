@@ -13,7 +13,7 @@
 | 		| 1    | App.js/course debuggaus|
 | 6.7.22| 2    | App.js/course debuggaus|
 | 		| 2    | App.js/course debuggaus|
-| 		|      | |
+| 		| 2    | App.js/course debuggaus|
 | 		|      | |
 | 		|      | |
 | 		|      | |
