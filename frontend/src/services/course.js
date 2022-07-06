@@ -11,11 +11,10 @@ const config = () => {
     }
 }
 
-const getAll = () => {
-    console.log('inside getAll()')
-    const request = axios.get(baseUrl)
-    console.log('request: ', request);
-    return request.data/* .then(response => response.data) */
+const getAll = async () => {
+    const response = await axios.get(baseUrl)
+    console.log('course.js getAll, response.data: ', response.data);
+    return response.data
 }
 
 /* const createNew = async newObject => {

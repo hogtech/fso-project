@@ -11,10 +11,10 @@
 | 		| 2,5  | Coursen implementointi, courseReducer|
 | 		| 2    | App.js/course debuggaus, courseReducer|
 | 		| 1    | App.js/course debuggaus|
+| 		| 2    | App.js/course debuggaus|
 | 		|      | |
 | 		|      | |
 | 		|      | |
 | 		|      | |
 | 		|      | |
-| 		|      | |
-| yht   | 15   | | 
+| yht   | 17   | | 
