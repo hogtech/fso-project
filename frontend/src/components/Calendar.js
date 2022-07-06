@@ -16,7 +16,7 @@ const LoginForm = ({ onEdit }) => {
 
     return (
         <div className='edit'>
-            <h2>Edit a Course</h2>
+            <h2>Calendar</h2>
 
             <form onSubmit={handleSubmit}>
                 <div>

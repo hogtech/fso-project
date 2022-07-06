@@ -16,6 +16,7 @@ import {
     BrowserRouter as Router,
     Routes, Route, Link, useNavigate
 } from "react-router-dom"
+import Calendar from './components/Calendar'
 const App = () => {
     const dispatch = useDispatch()
 
@@ -91,35 +92,52 @@ const App = () => {
             </div>
         )
     }
-    const padding = {
-        paddingRight: 5
-    }
+
     return (
         <div>
-            <div>
-                <Link style={padding} to="/">anecdotes</Link>
-                <Link style={padding} to="/create">create new</Link>
-                <Link style={padding} to="/about">about</Link>
-            </div>
+            <Menu />
             <div className='container'>
-                <h2>users</h2>
                 <div>
                     {user.name} logged in&nbsp;
                     <Button variant='info' onClick={logout}>logout</Button>
                 </div>
-                <h2>courses</h2>
-                {console.log('above map, courses: ', courses)}
-                <div>{courses.map((course) => (
-                    <div key={course.id}>
-                        <b>{course.name}</b><br></br>
-                        {course.description}
-                    </div>
-                ))}
-                </div>
-                <CourseForm></CourseForm>
+
+
+                <Routes>
+                    <Route path="/" element={<Courses courses={courses} />} />
+                    <Route path="/create" element={<CourseForm courses={courses} />} />
+                    <Route path="/signup" element={<CourseForm courses={courses} />} />
+                </Routes>
             </div>
         </div>
     )
 }
 
+
+const Menu = () => {
+    const padding = {
+        paddingRight: 5
+    }
+    return (
+        < div >
+            <Link style={padding} to="/">Tuntikalenteri</Link>
+            <Link style={padding} to="/create">Ryhmäliikunta</Link>
+            <Link style={padding} to="/signup">Rekisteröidy</Link>
+        </div >
+    )
+}
+const Courses = (props) => {
+    const courses = props.courses
+    return (
+        <div>    <h2>courses</h2>
+            <div>{courses.map((course) => (
+                <div key={course.id}>
+                    <b>{course.name}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+        </div>
+    )
+}
 export default App
