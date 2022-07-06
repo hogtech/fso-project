@@ -89,13 +89,13 @@ const App = () => {
                 </div>
                 <h2>courses</h2>
                 {console.log('above map, courses: ', courses)}
-                {/* <div>{courses.map((course) => (
+                <div>{courses.map((course) => (
                     <div key={course.id}>
                         <b>{course.name}</b><br></br>
                         {course.description}
                     </div>
                 ))}
-                </div> */}
+                </div>
             </div>
         )
     } else {
