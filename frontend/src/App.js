@@ -90,7 +90,6 @@ const App = () => {
         return (
             <div className='container'>
                 <LoginForm onLogin={login} />
-                <SignupForm onSignup={signup} />
             </div>
         )
     }
@@ -102,6 +101,8 @@ const App = () => {
                 <div>
                     {user.name} logged in&nbsp;
                     <Button variant='info' onClick={logout}>logout</Button>
+                    <br></br>
+                    <br></br>
                 </div>
 
 
@@ -116,16 +117,31 @@ const App = () => {
     )
 }
 const Course = ({ courses }) => {
-    const capital = {
-        textTransform: capitalize
+    const upperc = {
+        textTransform: "uppercase"
     }
     const id = useParams().id
     console.log('Course here, courses: ', courses)
     const course = courses.find(n => n.id === id)
     console.log('Course here, course: ', course)
+    var date = new Date(course.date)
+    var d = date.getDate()
+    var m = date.getMonth() + 1
+    var y = date.getFullYear()
+    const dateToDisplay = d + "." + m + "." + y + "."
+    const capitalize = (str) => {
+        const lower = str.toLowerCase()
+        return str.charAt(0).toUpperCase() + lower.slice(1)
+    }
     return (
         <div>
-            <h2 style={capitalize}>{course.name}</h2>
+            <p>{dateToDisplay}</p>
+            <h2 style={upperc}>{course.name}</h2>
+            <p>{capitalize(course.weekday)} {dateToDisplay} {course.startTime}-{course.endTime}</p>
+            <p>Ohjaaja: {course.instructor}</p>
+            <p>{course.description}</p>
+            <p>Varatut paikat: {course.bookedPlaces} <br></br>Paikkoja yhteensä: {course.totalPlaces}</p>
+            <LoginForm></LoginForm>
         </div>
     )
 }
@@ -154,7 +170,8 @@ const Courses = (props) => {
     const coursesByWeekDaySunday = courses.filter(c => c.weekday === 'sunnuntai')
 
     return (
-        <div>    <h2>Tunnit</h2>
+        <div>
+            <h2>Tunnit</h2>
             <h4>Maanantai</h4>
             <div>{coursesByWeekDayMonday.map((course) => (
                 <div key={course.id}>

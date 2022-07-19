@@ -16,11 +16,12 @@ const LoginForm = ({ onLogin }) => {
 
     return (
         <div className='login'>
-            <h2>Log in to application</h2>
+            <h2>Varaukset</h2>
+            <h2>Ole hyvä ja kirjaudu sisään</h2>
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    username &nbsp;
+                    Sähköposti &nbsp;
                     <input
                         value={username}
                         onChange={({ target }) => setUsername(target.value)}
@@ -28,7 +29,7 @@ const LoginForm = ({ onLogin }) => {
                     />
                 </div>
                 <div>
-                    password &nbsp;
+                    Salasana &nbsp;
                     <input
                         type="password"
                         value={password}
@@ -37,9 +38,11 @@ const LoginForm = ({ onLogin }) => {
                     />
                 </div>
                 <Button variant='info' id="login-button" type="submit">
-                    login
+                    KIRJAUDU
                 </Button>
             </form>
+            <p>Eikö sinulla ole vielä tunnuksia? Syötä tietosi, eikä se sido sinua mihinkään.</p>
+            <p>Unohditko salasanasi? Voit luoda uuden salasanan sähköpostiisi lähetettävän linkin avulla.</p>
         </div>
     )
 }

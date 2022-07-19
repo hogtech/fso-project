@@ -19,6 +19,7 @@
 | 		|  1   | Routing, Menu, Courses|
 | 		|  2   | Course-dataa syötetty, piirretty kuva näkymistä, Course-modelia muutettu|
 | 		|  2,5 | Course-moduuli + reititys + courset viikonpäivittäin|
+| 		|  2   | Course-moduuli + Date + Signup|
 | 		|      | |
 | 		|      | |
 | 		|      | |
@@ -26,5 +27,4 @@
 | 		|      | |
 | 		|      | |
 | 		|      | |
-| 		|      | |
-| yht   | 26,5 | | 
+| yht   |  30  | | 
