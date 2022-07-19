@@ -18,7 +18,7 @@
 | 		|  2   | CourseForm, Routing|
 | 		|  1   | Routing, Menu, Courses|
 | 		|  2   | Course-dataa syötetty, piirretty kuva näkymistä, Course-modelia muutettu|
-| 		|      | |
+| 		|  2,5 | Course-moduuli + reititys + courset viikonpäivittäin|
 | 		|      | |
 | 		|      | |
 | 		|      | |

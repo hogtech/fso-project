@@ -14,9 +14,11 @@ import axios from 'axios'
 import { initializeCourses } from './reducers/courseReducer'
 import {
     BrowserRouter as Router,
-    Routes, Route, Link, useNavigate
+    Routes, Route, Link, useNavigate, useParams
 } from "react-router-dom"
 import Calendar from './components/Calendar'
+import './index.css'
+
 const App = () => {
     const dispatch = useDispatch()
 
@@ -107,12 +109,26 @@ const App = () => {
                     <Route path="/" element={<Courses courses={courses} />} />
                     <Route path="/create" element={<CourseForm courses={courses} />} />
                     <Route path="/signup" element={<CourseForm courses={courses} />} />
+                    <Route path="/courses/:id" element={<Course courses={courses} />} />
                 </Routes>
             </div>
         </div>
     )
 }
-
+const Course = ({ courses }) => {
+    const capital = {
+        textTransform: capitalize
+    }
+    const id = useParams().id
+    console.log('Course here, courses: ', courses)
+    const course = courses.find(n => n.id === id)
+    console.log('Course here, course: ', course)
+    return (
+        <div>
+            <h2 style={capitalize}>{course.name}</h2>
+        </div>
+    )
+}
 
 const Menu = () => {
     const padding = {
@@ -126,13 +142,71 @@ const Menu = () => {
         </div >
     )
 }
+
 const Courses = (props) => {
     const courses = props.courses
+    const coursesByWeekDayMonday = courses.filter(c => c.weekday === 'maanantai')
+    const coursesByWeekDayTuesday = courses.filter(c => c.weekday === 'tiistai')
+    const coursesByWeekDayWednesday = courses.filter(c => c.weekday === 'keskiviikko')
+    const coursesByWeekDayThursday = courses.filter(c => c.weekday === 'torstai')
+    const coursesByWeekDayFriday = courses.filter(c => c.weekday === 'perjantai')
+    const coursesByWeekDaySaturday = courses.filter(c => c.weekday === 'lauantai')
+    const coursesByWeekDaySunday = courses.filter(c => c.weekday === 'sunnuntai')
+
     return (
-        <div>    <h2>courses</h2>
-            <div>{courses.map((course) => (
+        <div>    <h2>Tunnit</h2>
+            <h4>Maanantai</h4>
+            <div>{coursesByWeekDayMonday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.name}</b><br></br>
+                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+            <h4>Tiistai</h4>
+            <div>{coursesByWeekDayTuesday.map((course) => (
+                <div key={course.id}>
+                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+            <h4>Keskiviikko</h4>
+            <div>{coursesByWeekDayWednesday.map((course) => (
+                <div key={course.id}>
+                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+            <h4>Torstai</h4>
+            <div>{coursesByWeekDayThursday.map((course) => (
+                <div key={course.id}>
+                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+            <h4>Perjantai</h4>
+            <div>{coursesByWeekDayFriday.map((course) => (
+                <div key={course.id}>
+                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+            <h4>Lauantai</h4>
+            <div>{coursesByWeekDaySaturday.map((course) => (
+                <div key={course.id}>
+                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    {course.description}
+                </div>
+            ))}
+            </div>
+            <h4>Sunnuntai</h4>
+            <div>{coursesByWeekDaySunday.map((course) => (
+                <div key={course.id}>
+                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
