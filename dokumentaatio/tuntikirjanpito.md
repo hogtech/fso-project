@@ -14,7 +14,17 @@
 | 6.7.22| 2    | App.js/course debuggaus|
 | 		| 2    | App.js/course debuggaus|
 | 		| 2    | App.js/course debuggaus|
+| 		| 0,5  | App.js/course debuggaus valmis|
+| 		|  2   | CourseForm, Routing|
+| 		|  1   | Routing, Menu, Courses|
 | 		|      | |
 | 		|      | |
 | 		|      | |
-| yht   | 17   | | 
+| 		|      | |
+| 		|      | |
+| 		|      | |
+| 		|      | |
+| 		|      | |
+| 		|      | |
+| 		|      | |
+| yht   | 19   | | 

@@ -6,6 +6,37 @@ const schema = mongoose.Schema({
         required: true,
         minlength: 3,
     },
+    weekday: {
+        type: String,
+        required: true,
+        minlength: 3,
+    },
+    date: {
+        type: Date,
+    },
+    startTime: {
+        type: String,
+        required: true,
+        minlength: 3,
+    },
+    endTime: {
+        type: String,
+        required: true,
+        minlength: 3,
+    },
+    instructor: {
+        type: String,
+        required: true,
+        minlength: 3
+    },
+    bookedPlaces: {
+        type: Number,
+        required: true
+    },
+    totalPlaces: {
+        type: Number,
+        required: true
+    },
     description: String,
 })
 
