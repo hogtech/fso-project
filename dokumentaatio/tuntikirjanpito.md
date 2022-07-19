@@ -17,6 +17,7 @@
 | 		| 0,5  | App.js/course debuggaus valmis|
 | 		|  2   | CourseForm, Routing|
 | 		|  1   | Routing, Menu, Courses|
+| 		|  2   | Course-dataa syötetty, piirretty kuva näkymistä, Course-modelia muutettu|
 | 		|      | |
 | 		|      | |
 | 		|      | |
@@ -26,5 +27,4 @@
 | 		|      | |
 | 		|      | |
 | 		|      | |
-| 		|      | |
-| yht   | 19   | | 
+| yht   | 26,5 | | 
