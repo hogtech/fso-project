@@ -2,15 +2,17 @@ import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import '../index.css'
 
-const LoginForm = ({ onSignup }) => {
-    const [username, setUsername] = useState('')
+const SignupForm = ({ onSignup }) => {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
 
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        onSignup(username, name, password)
+        onSignup(email, name, password)
     }
     const style = {
         color: '333333'
@@ -18,28 +20,29 @@ const LoginForm = ({ onSignup }) => {
 
     return (
         <div className='login'>
-            <h2>Sign up for application</h2>
+            <h2>Luo uudet tunnukset täyttämällä oheiset kentät.</h2>
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    username &nbsp;
+                    Nimi: &nbsp;
                     <input
-                        value={username}
-                        onChange={({ target }) => setUsername(target.value)}
-                        id='signup-username'
-                    />
-                </div>
-                <div>
-                    name &nbsp;
-                    <input
-                        type="name"
+                        type="text"
                         value={name}
                         onChange={({ target }) => setName(target.value)}
                         id="signup-name"
                     />
                 </div>
                 <div>
-                    password &nbsp;
+                    Sähköpostiosoite: &nbsp;
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={({ target }) => setEmail(target.value)}
+                        id="signup-email"
+                    />
+                </div>
+                <div>
+                    Salasana: &nbsp;
                     <input
                         type="password"
                         value={password}
@@ -49,11 +52,11 @@ const LoginForm = ({ onSignup }) => {
                 </div>
 
                 <Button variant='info' id="signup-login-button" type="submit">
-                    login
+                    Hyväksyn ehdot ja haluan jatkaa
                 </Button>
             </form>
         </div>
     )
 }
 
-export default LoginForm
+export default SignupForm

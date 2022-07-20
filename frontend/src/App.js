@@ -69,6 +69,7 @@ const App = () => {
         })
     }
 
+
     const signup = async (username, name, password) => {
         try {
             await userService.signup({ username, name, password })
@@ -109,8 +110,8 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Courses courses={courses} />} />
                     <Route path="/create" element={<CourseForm courses={courses} />} />
-                    <Route path="/signup" element={<CourseForm courses={courses} />} />
                     <Route path="/courses/:id" element={<Course courses={courses} />} />
+                    <Route path="/signup" element={<SignupForm onSignup={signup} />} />
                 </Routes>
             </div>
         </div>
@@ -160,15 +161,24 @@ const Menu = () => {
 }
 
 const Courses = (props) => {
-    const courses = props.courses
-    const coursesByWeekDayMonday = courses.filter(c => c.weekday === 'maanantai')
-    const coursesByWeekDayTuesday = courses.filter(c => c.weekday === 'tiistai')
-    const coursesByWeekDayWednesday = courses.filter(c => c.weekday === 'keskiviikko')
-    const coursesByWeekDayThursday = courses.filter(c => c.weekday === 'torstai')
-    const coursesByWeekDayFriday = courses.filter(c => c.weekday === 'perjantai')
-    const coursesByWeekDaySaturday = courses.filter(c => c.weekday === 'lauantai')
-    const coursesByWeekDaySunday = courses.filter(c => c.weekday === 'sunnuntai')
 
+    const courses = props.courses
+    let coursesByWeekDayMonday = courses.filter(c => c.weekday === 'maanantai')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    const coursesByWeekDayTuesday = courses.filter(c => c.weekday === 'tiistai')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    let coursesByWeekDayWednesday = courses.filter(c => c.weekday === 'keskiviikko')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    const coursesByWeekDayThursday = courses.filter(c => c.weekday === 'torstai')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    const coursesByWeekDayFriday = courses.filter(c => c.weekday === 'perjantai')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    const coursesByWeekDaySaturday = courses.filter(c => c.weekday === 'lauantai')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    const coursesByWeekDaySunday = courses.filter(c => c.weekday === 'sunnuntai')
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+
+    console.log('coursesByWeekDayWednesday: ', coursesByWeekDayWednesday);
     return (
         <div>
             <h2>Tunnit</h2>
