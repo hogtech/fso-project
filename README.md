@@ -1,23 +1,12 @@
-# TodoApp
+# Fso-project
 
-Sovelluksen avulla käyttäjien on mahdollista pitää kirjaa tekemättömistään töistä eli todoista. Sovellusta on mahdollista käyttää useamman rekisteröityneen käyttäjän, joilla kaikilla on oma yksilöllinen tehtävälistansa.
+Tämä on Full Stack Open 2022 -kurssin harjoitustyö.
 
-Sovellus toimii myös Helsingin yliopiston Tietojenkäsittelytieteen kurssin Ohjelmistotekniikan menetelmät referenssisovelluksena. Sovelluksen tarkoituksena on demonstroida erästä tapaa tehdä suurin piirtein täysiin pisteisiin riittävä dokumentaatio sekä testaus projektillesi. Itse ohjelma on sen verran suppea, että saadaksesi kurssilta arvosanan 5 joudut tekemään hieman laajemman sovelluksen.
+Sovelluksen avulla käyttäjien on mahdollista pitää yllä kuntosalin varausjärjestelmää.
 
-## Huomio Javan versioista
+## Projektityö on kesken
 
-JavaFX aiheuttaa päänvaivaa ohjelmiston konfiguroinnin suhteen. Tässä repositoriossa olevan koodin _pitäisi_ toimia riippumatta käyttämästäsi Javan versiosta. Koodi toimii ainakin laitoksen cubbli-Linuxeissa olevilla Java:n versiolla 8 ja 11. 
-
-Jos käytät Javan versiota 8 ja tämä koodi _ei toimi_, niin repositorion _haarassa_ [java8](https://github.com/mluukkai/OtmTodoApp/blob/java8) on versio ohjelmasta, jonka pitäisi toimia myös Java 8:lla. Ainoat erot ovat tiedostossa [pom.xml](https://github.com/mluukkai/OtmTodoApp/blob/java8/pom.xml)
-- [mainClass](https://github.com/mluukkai/OtmTodoApp/blob/java8/pom.xml#L73) määritys on erilainen
-- osaista [dependencies](https://github.com/mluukkai/OtmTodoApp/blob/java8/pom.xml#L8) ja [plugins](https://github.com/mluukkai/OtmTodoApp/blob/java8/pom.xml#L23) puuttuu JavaFX:n liittyvät elementit.
-
-JavaFX:n liittyvistä ongelmista ja niiden kiertämisestä lisää [täällä](https://github.com/mluukkai/ohjelmistotekniikka-syksy-2019/blob/master/web/maven.md#javafx).
-
-Jos et saa projektia toimimaan koneellasi, saat apua pajassa.
-
-## Dokumentaatio
-
+<!---
 [Käyttöohje](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/kayttoohje.md)
 
 [Vaatimusmäärittely](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/vaatimusmaarittely.md)
@@ -25,8 +14,11 @@ Jos et saa projektia toimimaan koneellasi, saat apua pajassa.
 [Arkkitehtuurikuvaus](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 [Testausdokumentti](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md)
+-->
 
-[Työaikakirjanpito](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/tuntikirjanpito.md)
+[Työaikakirjanpito](https://github.com/hhokka/fso-project/blob/main/dokumentaatio/tuntikirjanpito.md)
+
+<!---
 
 ## Releaset
 
@@ -124,3 +116,4 @@ Käyttöjärjestelmän Java version vaihtaminen onnistuu esimerkiksi lisäämäl
 export JAVA_HOME=/usr/local/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home/
 ```
 Muista käynnistää lisäyksen jälkeen terminaali uudestaan, jolloin komento ```java --version``` näyttää versioksi 11.
+-->
