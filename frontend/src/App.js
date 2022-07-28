@@ -78,8 +78,31 @@ const App = () => {
         }
     }
 
-    const edit = () => {
-        console.log('edit here')
+    const edit = async (
+        name,
+        description,
+        weekday,
+        startTime,
+        endTime,
+        instructor,
+        bookedPlaces,
+        totalPlaces,
+    ) => {
+        console.log('edit here, description: ', description)
+        try {
+            await courseService.createNew({
+                name,
+                weekday,
+                startTime,
+                endTime,
+                instructor,
+                bookedPlaces,
+                totalPlaces,
+                description
+            })
+        } catch (error) {
+            console.log('edit error: ', error)
+        }
     }
     const logout = () => {
         setUser(null)
@@ -109,7 +132,7 @@ const App = () => {
 
                 <Routes>
                     <Route path="/" element={<Courses courses={courses} />} />
-                    <Route path="/create" element={<CourseForm courses={courses} />} />
+                    <Route path="/create" element={<CourseForm onEdit={edit} courses={courses} />} />
                     <Route path="/courses/:id" element={<Course courses={courses} />} />
                     <Route path="/signup" element={<SignupForm onSignup={signup} />} />
                 </Routes>
@@ -129,6 +152,9 @@ const Course = ({ courses }) => {
     var d = date.getDate()
     var m = date.getMonth() + 1
     var y = date.getFullYear()
+    var h = date.getHours()
+    var min = date.getMinutes()
+    const timeToDisplay = h + ':' + min
     const dateToDisplay = d + "." + m + "." + y + "."
     const capitalize = (str) => {
         const lower = str.toLowerCase()
@@ -136,13 +162,12 @@ const Course = ({ courses }) => {
     }
     return (
         <div>
-            <p>{dateToDisplay}</p>
+
             <h2 style={upperc}>{course.name}</h2>
-            <p>{capitalize(course.weekday)} {dateToDisplay} {course.startTime}-{course.endTime}</p>
+            <p>{capitalize(course.weekday)} {dateToDisplay} {timeToDisplay}-{course.endTime}</p>
             <p>Ohjaaja: {course.instructor}</p>
             <p>{course.description}</p>
             <p>Varatut paikat: {course.bookedPlaces} <br></br>Paikkoja yhteensä: {course.totalPlaces}</p>
-            <LoginForm></LoginForm>
         </div>
     )
 }
@@ -154,7 +179,7 @@ const Menu = () => {
     return (
         < div >
             <Link style={padding} to="/">Tuntikalenteri</Link>
-            <Link style={padding} to="/create">Ryhmäliikunta</Link>
+            <Link style={padding} to="/create">Lisää kurssi</Link>
             <Link style={padding} to="/signup">Rekisteröidy</Link>
         </div >
     )
@@ -193,7 +218,7 @@ const Courses = (props) => {
             <h4>Tiistai</h4>
             <div>{coursesByWeekDayTuesday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -201,7 +226,7 @@ const Courses = (props) => {
             <h4>Keskiviikko</h4>
             <div>{coursesByWeekDayWednesday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -209,7 +234,7 @@ const Courses = (props) => {
             <h4>Torstai</h4>
             <div>{coursesByWeekDayThursday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -217,7 +242,7 @@ const Courses = (props) => {
             <h4>Perjantai</h4>
             <div>{coursesByWeekDayFriday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -225,7 +250,7 @@ const Courses = (props) => {
             <h4>Lauantai</h4>
             <div>{coursesByWeekDaySaturday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{course.startTime}<Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -233,7 +258,7 @@ const Courses = (props) => {
             <h4>Sunnuntai</h4>
             <div>{coursesByWeekDaySunday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} {course.name} {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}

@@ -31,13 +31,16 @@ const schema = mongoose.Schema({
     },
     bookedPlaces: {
         type: Number,
-        required: true
+        default: 0,
     },
     totalPlaces: {
         type: Number,
-        required: true
+        required: true,
     },
-    description: String,
+    description: {
+        String,
+
+    }
 })
 
 schema.set('toJSON', {

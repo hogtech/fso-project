@@ -17,11 +17,12 @@ const getAll = async () => {
     return response.data
 }
 
-/* const createNew = async newObject => {
+const createNew = async newObject => {
+    console.log('createNew here')
     const response = await axios.post(baseUrl, newObject, config())
     return response.data
 }
-
+/*
 const update = (id, newObject) => {
     const request = axios.put(`${baseUrl}/${id}`, newObject)
     return request.then(response => response.data)
@@ -42,4 +43,4 @@ const like = async (id) => {
     console.log('like res: ', res.data);
     return res.data
 } */
-export default { getAll/* , createNew, update, remove, like */ }
+export default { getAll, createNew /*, update, remove, like */ }

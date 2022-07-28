@@ -20,11 +20,11 @@
 | 		|  2   | Course-dataa syötetty, piirretty kuva näkymistä, Course-modelia muutettu|
 | 		|  2,5 | Course-moduuli + reititys + courset viikonpäivittäin|
 | 		|  2   | Course-moduuli + Date + Signup|
-| 		|  2   | Signupin kirjoittamista|
+| 		|  2   | Signupin kirjoittamista, kurssien järjestäminen kellonajan mukaan|
+| 		|  2,5 | Linkkien lisääminen kursseihin, Lisää kurssi -sivun tekemistä, coursen schema|
 | 		|      | |
 | 		|      | |
 | 		|      | |
 | 		|      | |
 | 		|      | |
-| 		|      | |
-| yht   |  32  | | 
+| yht   |  33  | | 
