@@ -11,11 +11,9 @@ router.get('/', async (request, response) => {
 
 router.post('/', async (request, response) => {
     console.log('inside courses controller post')
-    const { name, weekday, date, startTime, endTime, instructor, bookedPlaces, totalPlaces, description } = request.body
+    const { name, startTime, endTime, instructor, bookedPlaces, totalPlaces, description } = request.body
     const course = new Course({
         name,
-        weekday,
-        date,
         startTime,
         endTime,
         instructor,

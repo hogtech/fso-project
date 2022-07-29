@@ -3,23 +3,15 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema({
     name: {
         type: String,
-
-        minlength: 3,
     },
     startTime: {
         type: String,
-
-        minlength: 3,
     },
     endTime: {
         type: String,
-
-        minlength: 3,
     },
     instructor: {
         type: String,
-
-        minlength: 3
     },
     bookedPlaces: {
         type: Number,

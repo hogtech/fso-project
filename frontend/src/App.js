@@ -80,23 +80,19 @@ const App = () => {
 
     const createCourse = async (
         name,
-        description,
-        weekday,
         startTime,
         endTime,
         instructor,
-        bookedPlaces,
         totalPlaces,
+        description
     ) => {
         console.log('createCourse here, description: ', description)
         try {
             await courseService.createNew({
                 name,
-                weekday,
                 startTime,
                 endTime,
                 instructor,
-                bookedPlaces,
                 totalPlaces,
                 description
             })
@@ -163,20 +159,47 @@ const Course = ({ courses }) => {
     var endY = endDate.getFullYear()
     var endH = endDate.getHours()
     var endMin = endDate.getMinutes()
-    endMin = (endDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
+    endMin = (endDate.getMinutes() < 10 ? '0' : '') + endDate.getMinutes()
 
     const startTimeToDisplay = startH + ':' + startMin
     const endTimeToDisplay = endH + ':' + endMin
     const dateToDisplay = startD + "." + startM + "." + startY + "."
-    const capitalize = (str) => {
+    /* const capitalize = (str) => {
         const lower = str.toLowerCase()
         return str.charAt(0).toUpperCase() + lower.slice(1)
+    } */
+    const getWeekDayName = (weekDayNumber) => {
+        switch (weekDayNumber) {
+            case 0:
+                return 'Sunnuntai'
+                break;
+            case 1:
+                return 'Maanantai'
+                break;
+            case 2:
+                return 'Tiistai'
+                break;
+            case 3:
+                return 'Keskiviikko'
+                break
+            case 4:
+                return 'Torstai'
+                break
+            case 5:
+                return 'Perjantai'
+                break
+            case 6:
+                return 'Lauantai'
+                break
+            default:
+                break;
+        }
     }
     return (
         <div>
 
             <h2 style={upperc}>{course.name} {weekday}</h2>
-            <p>{capitalize(course.weekday)} {dateToDisplay} {startTimeToDisplay}-{endTimeToDisplay}</p>
+            <p>{getWeekDayName(weekday)} {dateToDisplay} {startTimeToDisplay}-{endTimeToDisplay}</p>
             <p>Ohjaaja: {course.instructor}</p>
             <p>{course.description}</p>
             <p>Varatut paikat: {course.bookedPlaces} <br></br>Paikkoja yhteensä: {course.totalPlaces}</p>
@@ -266,7 +289,7 @@ const Courses = (props) => {
             <h4>Tiistai</h4>
             <div>{coursesByWeekDayTuesday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -274,7 +297,7 @@ const Courses = (props) => {
             <h4>Keskiviikko</h4>
             <div>{coursesByWeekDayWednesday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)}  {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -282,7 +305,7 @@ const Courses = (props) => {
             <h4>Torstai</h4>
             <div>{coursesByWeekDayThursday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)}  {toDisplayStartTime(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -290,7 +313,7 @@ const Courses = (props) => {
             <h4>Perjantai</h4>
             <div>{coursesByWeekDayFriday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -298,7 +321,7 @@ const Courses = (props) => {
             <h4>Lauantai</h4>
             <div>{coursesByWeekDaySaturday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -306,7 +329,7 @@ const Courses = (props) => {
             <h4>Sunnuntai</h4>
             <div>{coursesByWeekDaySunday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}

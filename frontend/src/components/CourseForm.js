@@ -18,12 +18,16 @@ const LoginForm = ({ onCreate }) => {
         event.preventDefault()
         onCreate(
             name,
-            description,
             startTime,
             endTime,
             instructor,
-            bookedPlaces,
-            totalPlaces)
+            totalPlaces,
+            description)
+
+
+
+
+
         /* createNew(
             name,
             description,
