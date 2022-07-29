@@ -18,11 +18,13 @@ import {
 } from "react-router-dom"
 import Calendar from './components/Calendar'
 import './index.css'
+import * as React from 'react';
 
 const App = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState(null)
+
     //const [courses, setCourses] = useState(null)
     const courses = useSelector(state => state.courses)
 
@@ -198,7 +200,7 @@ const Course = ({ courses }) => {
     return (
         <div>
 
-            <h2 style={upperc}>{course.name} {weekday}</h2>
+            <h2 style={upperc}>{course.name}</h2>
             <p>{getWeekDayName(weekday)} {dateToDisplay} {startTimeToDisplay}-{endTimeToDisplay}</p>
             <p>Ohjaaja: {course.instructor}</p>
             <p>{course.description}</p>
@@ -221,6 +223,13 @@ const Menu = () => {
 }
 
 const Courses = (props) => {
+    const [weekNumber, setWeekNumber] = useState(null)
+    //setWeekNumber = 31
+    const [value, setValue] = React.useState('fruit');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
     let courses = props.courses
 
     function getWeekNumber(d) {
@@ -236,7 +245,7 @@ const Courses = (props) => {
         // Return array of year and week number
         return weekNo
     }
-    let weekNumber = 31
+    //let weekNumber = 31
     const toDisplayDate = (course) => {
         let time = new Date(course.startTime)
         let d = time.getDate()
@@ -274,15 +283,30 @@ const Courses = (props) => {
         .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber).sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
 
     console.log('coursesByWeekDayMonday: ', coursesByWeekDayMonday);
+    const options = [
+        { label: '30 / 2022', value: 30 },
+        { label: '31 / 2022', value: 31 },
+        { label: '32 / 2022', value: 32 },
+    ];
+
     return (
         <div>
+            <label>
+                Valitse viikko
+                <select value={value} onChange={handleChange}>
+                    {options.map((option) => (
+                        <option value={option.value}>{option.label}</option>
+                    ))}
+                </select>
+            </label>
+            <p>Week number is {value}</p>
             <h2>Tunnit</h2>
             <h4>Maanantai</h4>
             <div>{coursesByWeekDayMonday.map((course) => (
                 <div key={course.id}>
-                    <h2>Week number: {getWeekNumber(new Date(course.startTime))}</h2>
+                    <h2>Week number: {weekNumber}</h2>
                     <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
+
                 </div>
             ))}
             </div>
@@ -290,7 +314,7 @@ const Courses = (props) => {
             <div>{coursesByWeekDayTuesday.map((course) => (
                 <div key={course.id}>
                     <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
+
                 </div>
             ))}
             </div>
@@ -298,15 +322,13 @@ const Courses = (props) => {
             <div>{coursesByWeekDayWednesday.map((course) => (
                 <div key={course.id}>
                     <b>{toDisplayDate(course)}  {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
                 </div>
             ))}
             </div>
             <h4>Torstai</h4>
             <div>{coursesByWeekDayThursday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)}  {toDisplayStartTime(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
+                    <b>{toDisplayDate(course)}  {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                 </div>
             ))}
             </div>
@@ -314,15 +336,13 @@ const Courses = (props) => {
             <div>{coursesByWeekDayFriday.map((course) => (
                 <div key={course.id}>
                     <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
                 </div>
             ))}
             </div>
             <h4>Lauantai</h4>
             <div>{coursesByWeekDaySaturday.map((course) => (
                 <div key={course.id}>
-                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
+                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                 </div>
             ))}
             </div>
@@ -330,7 +350,6 @@ const Courses = (props) => {
             <div>{coursesByWeekDaySunday.map((course) => (
                 <div key={course.id}>
                     <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
-                    {course.description}
                 </div>
             ))}
             </div>
