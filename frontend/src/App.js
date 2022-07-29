@@ -78,7 +78,7 @@ const App = () => {
         }
     }
 
-    const edit = async (
+    const createCourse = async (
         name,
         description,
         weekday,
@@ -88,7 +88,7 @@ const App = () => {
         bookedPlaces,
         totalPlaces,
     ) => {
-        console.log('edit here, description: ', description)
+        console.log('createCourse here, description: ', description)
         try {
             await courseService.createNew({
                 name,
@@ -101,7 +101,7 @@ const App = () => {
                 description
             })
         } catch (error) {
-            console.log('edit error: ', error)
+            console.log('crateCourse error: ', error)
         }
     }
     const logout = () => {
@@ -132,7 +132,7 @@ const App = () => {
 
                 <Routes>
                     <Route path="/" element={<Courses courses={courses} />} />
-                    <Route path="/create" element={<CourseForm onEdit={edit} courses={courses} />} />
+                    <Route path="/create" element={<CourseForm onCreate={createCourse} courses={courses} />} />
                     <Route path="/courses/:id" element={<Course courses={courses} />} />
                     <Route path="/signup" element={<SignupForm onSignup={signup} />} />
                 </Routes>
@@ -148,14 +148,26 @@ const Course = ({ courses }) => {
     console.log('Course here, courses: ', courses)
     const course = courses.find(n => n.id === id)
     console.log('Course here, course: ', course)
-    var date = new Date(course.date)
-    var d = date.getDate()
-    var m = date.getMonth() + 1
-    var y = date.getFullYear()
-    var h = date.getHours()
-    var min = date.getMinutes()
-    const timeToDisplay = h + ':' + min
-    const dateToDisplay = d + "." + m + "." + y + "."
+    var startDate = new Date(course.startTime)
+    var endDate = new Date(course.endTime)
+
+    var startD = startDate.getDate()
+    var startM = startDate.getMonth() + 1
+    var startY = startDate.getFullYear()
+    var startH = startDate.getHours()
+    var startMin = endDate.getMinutes()
+    startMin = (startDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
+    var weekday = startDate.getDay()
+    var endD = endDate.getDate()
+    var endM = endDate.getMonth() + 1
+    var endY = endDate.getFullYear()
+    var endH = endDate.getHours()
+    var endMin = endDate.getMinutes()
+    endMin = (endDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
+
+    const startTimeToDisplay = startH + ':' + startMin
+    const endTimeToDisplay = endH + ':' + endMin
+    const dateToDisplay = startD + "." + startM + "." + startY + "."
     const capitalize = (str) => {
         const lower = str.toLowerCase()
         return str.charAt(0).toUpperCase() + lower.slice(1)
@@ -163,8 +175,8 @@ const Course = ({ courses }) => {
     return (
         <div>
 
-            <h2 style={upperc}>{course.name}</h2>
-            <p>{capitalize(course.weekday)} {dateToDisplay} {timeToDisplay}-{course.endTime}</p>
+            <h2 style={upperc}>{course.name} {weekday}</h2>
+            <p>{capitalize(course.weekday)} {dateToDisplay} {startTimeToDisplay}-{endTimeToDisplay}</p>
             <p>Ohjaaja: {course.instructor}</p>
             <p>{course.description}</p>
             <p>Varatut paikat: {course.bookedPlaces} <br></br>Paikkoja yhteensä: {course.totalPlaces}</p>
@@ -186,31 +198,67 @@ const Menu = () => {
 }
 
 const Courses = (props) => {
+    let courses = props.courses
 
-    const courses = props.courses
-    let coursesByWeekDayMonday = courses.filter(c => c.weekday === 'maanantai')
+    function getWeekNumber(d) {
+        // Copy date so don't modify original
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7))
+        // Get first day of year
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
+        // Calculate full weeks to nearest Thursday
+        var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
+        // Return array of year and week number
+        return weekNo
+    }
+    let weekNumber = 31
+    const toDisplayDate = (course) => {
+        let time = new Date(course.startTime)
+        let d = time.getDate()
+        let m = time.getMonth() + 1
+        let y = time.getFullYear()
+        console.log(d + '.' + m + '.' + y)
+        return (d + '.' + m + '.' + y)
+    }
+    const toDisplayStartTime = (course) => {
+        let time = new Date(course.startTime)
+        let h = time.getHours()
+        //let min = time.getMinutes()
+        let startMin = (time.getMinutes() < 10 ? '0' : '') + time.getMinutes()
+        return (h + ':' + startMin)
+    }
+    const coursesByWeekDayMonday = courses.filter(c => new Date(c.startTime).getDay() === 1)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
-    const coursesByWeekDayTuesday = courses.filter(c => c.weekday === 'tiistai')
+    const coursesByWeekDayTuesday = courses.filter(c => new Date(c.startTime).getDay() === 2)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
-    let coursesByWeekDayWednesday = courses.filter(c => c.weekday === 'keskiviikko')
+    const coursesByWeekDayWednesday = courses.filter(c => new Date(c.startTime).getDay() === 3)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
-    const coursesByWeekDayThursday = courses.filter(c => c.weekday === 'torstai')
+    const coursesByWeekDayThursday = courses.filter(c => new Date(c.startTime).getDay() === 4)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
-    const coursesByWeekDayFriday = courses.filter(c => c.weekday === 'perjantai')
+    const coursesByWeekDayFriday = courses.filter(c => new Date(c.startTime).getDay() === 5)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
-    const coursesByWeekDaySaturday = courses.filter(c => c.weekday === 'lauantai')
+    const coursesByWeekDaySaturday = courses.filter(c => new Date(c.startTime).getDay() === 6)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
-    const coursesByWeekDaySunday = courses.filter(c => c.weekday === 'sunnuntai')
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+    const coursesByWeekDaySunday = courses.filter(c => new Date(c.startTime).getDay() === 0)
+        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber).sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
 
-    console.log('coursesByWeekDayWednesday: ', coursesByWeekDayWednesday);
+    console.log('coursesByWeekDayMonday: ', coursesByWeekDayMonday);
     return (
         <div>
             <h2>Tunnit</h2>
             <h4>Maanantai</h4>
             <div>{coursesByWeekDayMonday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <h2>Week number: {getWeekNumber(new Date(course.startTime))}</h2>
+                    <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -218,7 +266,7 @@ const Courses = (props) => {
             <h4>Tiistai</h4>
             <div>{coursesByWeekDayTuesday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -226,7 +274,7 @@ const Courses = (props) => {
             <h4>Keskiviikko</h4>
             <div>{coursesByWeekDayWednesday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -234,7 +282,7 @@ const Courses = (props) => {
             <h4>Torstai</h4>
             <div>{coursesByWeekDayThursday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -242,7 +290,7 @@ const Courses = (props) => {
             <h4>Perjantai</h4>
             <div>{coursesByWeekDayFriday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -250,7 +298,7 @@ const Courses = (props) => {
             <h4>Lauantai</h4>
             <div>{coursesByWeekDaySaturday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime}<Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)}<Link to={`/courses/${course.id}`}>{course.name}</Link>  {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}
@@ -258,7 +306,7 @@ const Courses = (props) => {
             <h4>Sunnuntai</h4>
             <div>{coursesByWeekDaySunday.map((course) => (
                 <div key={course.id}>
-                    <b>{course.startTime} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
+                    <b>{toDisplayDate(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
                     {course.description}
                 </div>
             ))}

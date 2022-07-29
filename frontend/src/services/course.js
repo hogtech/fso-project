@@ -19,6 +19,7 @@ const getAll = async () => {
 
 const createNew = async newObject => {
     console.log('createNew here')
+    console.log('createNew description: ', newObject.description);
     const response = await axios.post(baseUrl, newObject, config())
     return response.data
 }

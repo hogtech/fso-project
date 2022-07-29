@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import '../index.css'
 import createNew from '../services/course.js'
 
-const LoginForm = ({ onEdit }) => {
+const LoginForm = ({ onCreate }) => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [weekday, setWeekDay] = useState('')
@@ -16,10 +16,9 @@ const LoginForm = ({ onEdit }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        onEdit(
+        onCreate(
             name,
             description,
-            weekday,
             startTime,
             endTime,
             instructor,
@@ -55,15 +54,7 @@ const LoginForm = ({ onEdit }) => {
                         id='name'
                     />
                 </div>
-                <div>
-                    Viikonpäivä
-                    <input
-                        type='text'
-                        value={weekday}
-                        onChange={({ target }) => setWeekDay(target.value)}
-                        id='weekday'
-                    />
-                </div>
+
                 {/* <div>
                     Päivämäärä
                     <input
@@ -100,15 +91,7 @@ const LoginForm = ({ onEdit }) => {
                         id='instructor'
                     />
                 </div>
-                <div>
-                    bookedPlaces
-                    <input
-                        type='text'
-                        value={0}
-                        onChange={({ target }) => setBookedPlaces(target.value)}
-                        id='booked-places'
-                    />
-                </div>
+
                 <div>
                     totalPlaces
                     <input

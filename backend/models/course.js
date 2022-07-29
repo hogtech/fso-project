@@ -3,30 +3,22 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
+
         minlength: 3,
-    },
-    weekday: {
-        type: String,
-        required: true,
-        minlength: 3,
-    },
-    date: {
-        type: Date,
     },
     startTime: {
         type: String,
-        required: true,
+
         minlength: 3,
     },
     endTime: {
         type: String,
-        required: true,
+
         minlength: 3,
     },
     instructor: {
         type: String,
-        required: true,
+
         minlength: 3
     },
     bookedPlaces: {
@@ -35,10 +27,10 @@ const schema = mongoose.Schema({
     },
     totalPlaces: {
         type: Number,
-        required: true,
+
     },
     description: {
-        String,
+        type: String,
 
     }
 })
