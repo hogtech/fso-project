@@ -223,12 +223,13 @@ const Menu = () => {
 }
 
 const Courses = (props) => {
-    const [weekNumber, setWeekNumber] = useState(null)
+    const [weekNumber, setWeekNumber] = useState(30)
     //setWeekNumber = 31
-    const [value, setValue] = React.useState('fruit');
+    //const [value, setValue] = useState('31');
 
     const handleChange = (event) => {
-        setValue(event.target.value);
+        //setValue(event.target.value);
+        setWeekNumber(event.target.value)
     };
     let courses = props.courses
 
@@ -262,25 +263,26 @@ const Courses = (props) => {
         return (h + ':' + startMin)
     }
     const coursesByWeekDayMonday = courses.filter(c => new Date(c.startTime).getDay() === 1)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
     const coursesByWeekDayTuesday = courses.filter(c => new Date(c.startTime).getDay() === 2)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
     const coursesByWeekDayWednesday = courses.filter(c => new Date(c.startTime).getDay() === 3)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
     const coursesByWeekDayThursday = courses.filter(c => new Date(c.startTime).getDay() === 4)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
     const coursesByWeekDayFriday = courses.filter(c => new Date(c.startTime).getDay() === 5)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
     const coursesByWeekDaySaturday = courses.filter(c => new Date(c.startTime).getDay() === 6)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber)
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
     const coursesByWeekDaySunday = courses.filter(c => new Date(c.startTime).getDay() === 0)
-        .filter(c => getWeekNumber(new Date(c.startTime)) === weekNumber).sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
+        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
 
     console.log('coursesByWeekDayMonday: ', coursesByWeekDayMonday);
     const options = [
@@ -293,18 +295,17 @@ const Courses = (props) => {
         <div>
             <label>
                 Valitse viikko
-                <select value={value} onChange={handleChange}>
+                <select value={weekNumber} onChange={handleChange}>
                     {options.map((option) => (
                         <option value={option.value}>{option.label}</option>
                     ))}
                 </select>
             </label>
-            <p>Week number is {value}</p>
+            <p>Valittuna viikko numero {weekNumber}</p>
             <h2>Tunnit</h2>
             <h4>Maanantai</h4>
             <div>{coursesByWeekDayMonday.map((course) => (
                 <div key={course.id}>
-                    <h2>Week number: {weekNumber}</h2>
                     <b>{toDisplayDate(course)} {toDisplayStartTime(course)} <Link to={`/courses/${course.id}`}>{course.name}</Link> {course.bookedPlaces}/{course.totalPlaces}</b><br></br>
 
                 </div>

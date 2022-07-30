@@ -24,8 +24,8 @@
 |28.7.22|  2,5 | Linkkien lisääminen kursseihin, Lisää kurssi -sivun tekemistä, coursen schema|
 |29.7.22|  3   | Kurssien lisäyksen tekoa, kurssien listausta päivämäärän ja viikonnumeron perusteella|
 |29.7.22|  1   | Kurssien yksityiskohtanäkymä|
-|29.7.22   2,5 | Syötetty kurssidataa, tehty dropdown viikon valitsemiseksi| |
-| 		|      | |
+|29.7.22|  2,5 | Syötetty kurssidataa, tehty dropdown viikon valitsemiseksi|
+|30.7.22|  1   | Kurssien listaus viikoittain|
 | 		|      | |
 | 		|      | |
 | 		|      | |
