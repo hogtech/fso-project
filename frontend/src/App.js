@@ -223,7 +223,11 @@ const Menu = () => {
 }
 
 const Courses = (props) => {
-    const [weekNumber, setWeekNumber] = useState(30)
+    const getThisWeeksNumber = () => {
+        return Number(getWeekNumber(new Date()))
+        return 31
+    }
+    const [weekNumber, setWeekNumber] = useState(getThisWeeksNumber())
     //setWeekNumber = 31
     //const [value, setValue] = useState('31');
 
@@ -246,6 +250,7 @@ const Courses = (props) => {
         // Return array of year and week number
         return weekNo
     }
+
     //let weekNumber = 31
     const toDisplayDate = (course) => {
         let time = new Date(course.startTime)
@@ -285,11 +290,24 @@ const Courses = (props) => {
         .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
 
     console.log('coursesByWeekDayMonday: ', coursesByWeekDayMonday);
+
+    const isThisWeek = (weekNumberToTry) => {
+        if (weekNumberToTry === getThisWeeksNumber(new Date())) {
+            return ' (Nyt)'
+        } else {
+            return ''
+        }
+    }
+
     const options = [
-        { label: '30 / 2022', value: 30 },
-        { label: '31 / 2022', value: 31 },
-        { label: '32 / 2022', value: 32 },
+        { label: '30 / 2022' + isThisWeek(30), value: 30 },
+        { label: '31 / 2022' + isThisWeek(31), value: 31 },
+        { label: '32 / 2022' + isThisWeek(32), value: 32 },
+        { label: '33 / 2022' + isThisWeek(33), value: 33 },
+        { label: '34 / 2022' + isThisWeek(34), value: 34 },
+        { label: '35 / 2022' + isThisWeek(35), value: 35 },
     ];
+
 
     return (
         <div>
@@ -301,7 +319,6 @@ const Courses = (props) => {
                     ))}
                 </select>
             </label>
-            <p>Valittuna viikko numero {weekNumber}</p>
             <h2>Tunnit</h2>
             <h4>Maanantai</h4>
             <div>{coursesByWeekDayMonday.map((course) => (
