@@ -28,7 +28,7 @@
 |30.7.22|  1   | Kurssien listaus viikoittain|
 |30.7.22|  1,5 | Kurssien listaus viikoittain|
 |30.7.22|  2,5 | Kurssien järjestäminen ajan mukaan, debuggausta|
-| 		|      | |
+|30.7.22|  0,5 | App.js:n refaktorointia|
 | 		|      | |
 
 | 		|      | |

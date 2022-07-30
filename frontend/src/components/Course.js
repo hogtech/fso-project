@@ -1,0 +1,77 @@
+import {
+    BrowserRouter as Router,
+    Routes, Route, Link, useNavigate, useParams
+} from "react-router-dom"
+
+const Course = ({ courses }) => {
+    const upperc = {
+        textTransform: "uppercase"
+    }
+    const id = useParams().id
+    console.log('Course here, courses: ', courses)
+    const course = courses.find(n => n.id === id)
+    console.log('Course here, course: ', course)
+    var startDate = new Date(course.startTime)
+    var endDate = new Date(course.endTime)
+
+    var startD = startDate.getDate()
+    var startM = startDate.getMonth() + 1
+    var startY = startDate.getFullYear()
+    var startH = startDate.getHours()
+    var startMin = endDate.getMinutes()
+    startMin = (startDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
+    var weekday = startDate.getDay()
+    var endD = endDate.getDate()
+    var endM = endDate.getMonth() + 1
+    var endY = endDate.getFullYear()
+    var endH = endDate.getHours()
+    var endMin = endDate.getMinutes()
+    endMin = (endDate.getMinutes() < 10 ? '0' : '') + endDate.getMinutes()
+
+    const startTimeToDisplay = startH + ':' + startMin
+    const endTimeToDisplay = endH + ':' + endMin
+    const dateToDisplay = startD + "." + startM + "." + startY + "."
+    /* const capitalize = (str) => {
+        const lower = str.toLowerCase()
+        return str.charAt(0).toUpperCase() + lower.slice(1)
+    } */
+    const getWeekDayName = (weekDayNumber) => {
+        switch (weekDayNumber) {
+            case 0:
+                return 'Sunnuntai'
+                break;
+            case 1:
+                return 'Maanantai'
+                break;
+            case 2:
+                return 'Tiistai'
+                break;
+            case 3:
+                return 'Keskiviikko'
+                break
+            case 4:
+                return 'Torstai'
+                break
+            case 5:
+                return 'Perjantai'
+                break
+            case 6:
+                return 'Lauantai'
+                break
+            default:
+                break;
+        }
+    }
+    return (
+        <div>
+
+            <h2 key={course.id} style={upperc}>{course.name}</h2>
+            <p>{getWeekDayName(weekday)} {dateToDisplay} {startTimeToDisplay}-{endTimeToDisplay}</p>
+            <p>Ohjaaja: {course.instructor}</p>
+            <p>{course.description}</p>
+            <p>Varatut paikat: {course.bookedPlaces} <br></br>Paikkoja yhteensä: {course.totalPlaces}</p>
+        </div>
+    )
+}
+
+export default Course

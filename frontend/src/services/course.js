@@ -23,6 +23,11 @@ const createNew = async newObject => {
     const response = await axios.post(baseUrl, newObject, config())
     return response.data
 }
+
+const bookCourse = (id, newObject) => {
+    newObject.bookedPlaces = newObject.bookedPlaces + 1
+    const request = axios.put(`${baseUrl}/${id}`, newObject)
+}
 /*
 const update = (id, newObject) => {
     const request = axios.put(`${baseUrl}/${id}`, newObject)
@@ -44,4 +49,4 @@ const like = async (id) => {
     console.log('like res: ', res.data);
     return res.data
 } */
-export default { getAll, createNew /*, update, remove, like */ }
+export default { getAll, createNew, bookCourse /*, update, remove, like */ }
