@@ -27,7 +27,7 @@
 |29.7.22|  2,5 | Syötetty kurssidataa, tehty dropdown viikon valitsemiseksi|
 |30.7.22|  1   | Kurssien listaus viikoittain|
 |30.7.22|  1,5 | Kurssien listaus viikoittain|
-| 		|      | |
+|30.7.22|  2,5 | Kurssien järjestäminen ajan mukaan, debuggausta|
 | 		|      | |
 | 		|      | |
 

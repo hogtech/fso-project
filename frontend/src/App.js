@@ -269,27 +269,27 @@ const Courses = (props) => {
     }
     const coursesByWeekDayMonday = courses.filter(c => new Date(c.startTime).getDay() === 1)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
     const coursesByWeekDayTuesday = courses.filter(c => new Date(c.startTime).getDay() === 2)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
     const coursesByWeekDayWednesday = courses.filter(c => new Date(c.startTime).getDay() === 3)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
     const coursesByWeekDayThursday = courses.filter(c => new Date(c.startTime).getDay() === 4)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
     const coursesByWeekDayFriday = courses.filter(c => new Date(c.startTime).getDay() === 5)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
     const coursesByWeekDaySaturday = courses.filter(c => new Date(c.startTime).getDay() === 6)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
     const coursesByWeekDaySunday = courses.filter(c => new Date(c.startTime).getDay() === 0)
         .filter(c => Number(getWeekNumber(new Date(c.startTime))) === Number(weekNumber))
-        .sort((a, b) => Number(a.startTime.slice(0, 2)) - Number(b.startTime.slice(0, 2)))
+        .sort((a, b) => Number(new Date(a.startTime).getHours()) - Number(new Date(b.startTime).getHours()))
 
-    console.log('coursesByWeekDayMonday: ', coursesByWeekDayMonday);
+    console.log('coursesByWeekDayMonday: ', coursesByWeekDayMonday)
 
     const isThisWeek = (weekNumberToTry) => {
         if (weekNumberToTry === getThisWeeksNumber(new Date())) {

@@ -7,7 +7,8 @@ const schema = mongoose.Schema({
         minlength: 3,
     },
     name: String,
-    passwordHash: String
+    passwordHash: String,
+    bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
 })
 
 schema.set('toJSON', {
