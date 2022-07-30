@@ -2,8 +2,12 @@ import {
     BrowserRouter as Router,
     Routes, Route, Link, useNavigate, useParams
 } from "react-router-dom"
+import { Button } from 'react-bootstrap'
 
 const Course = ({ courses }) => {
+    const handleClick = () => {
+        alert('click here')
+    }
     const upperc = {
         textTransform: "uppercase"
     }
@@ -62,6 +66,7 @@ const Course = ({ courses }) => {
                 break;
         }
     }
+
     return (
         <div>
 
@@ -70,6 +75,8 @@ const Course = ({ courses }) => {
             <p>Ohjaaja: {course.instructor}</p>
             <p>{course.description}</p>
             <p>Varatut paikat: {course.bookedPlaces} <br></br>Paikkoja yhteensä: {course.totalPlaces}</p>
+            <p>Sinulla on varauksia tälle tunnille 0 kpl</p>
+            <Button onClick={(handleClick)}>Varaa</Button>
         </div>
     )
 }
