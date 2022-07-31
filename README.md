@@ -1,10 +1,10 @@
 # Fso-project
 
-Tämä on Full Stack Open 2022 -kurssin harjoitustyö.
+This is a project work for Full Stack Open 2022 course.
 
-Sovelluksen avulla käyttäjien on mahdollista pitää yllä kuntosalin varausjärjestelmää.
+This application is used to keep track of a gym's bookings.
 
-## Projektityö on kesken
+## This project is not complete yet.
 
 <!---
 [Käyttöohje](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/kayttoohje.md)
@@ -16,7 +16,7 @@ Sovelluksen avulla käyttäjien on mahdollista pitää yllä kuntosalin varausj�
 [Testausdokumentti](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md)
 -->
 
-[Työaikakirjanpito](https://github.com/hhokka/fso-project/blob/main/dokumentaatio/tuntikirjanpito.md)
+[Record of working hours](https://github.com/hhokka/fso-project/blob/main/dokumentaatio/tuntikirjanpito.md)
 
 <!---
 
