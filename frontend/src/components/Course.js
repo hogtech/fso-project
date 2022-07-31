@@ -3,21 +3,27 @@ import {
     Routes, Route, Link, useNavigate, useParams
 } from "react-router-dom"
 import { Button } from 'react-bootstrap'
+import courseService from '../services/course'
+import { useEffect } from "react"
 
 const Course = ({ courses }) => {
-    const handleClick = () => {
-        alert('click here')
-    }
+    useEffect(() => {
+        course = courses.find(n => n.id === id)
+        console.log('inside useeffect');
+    })
     const upperc = {
         textTransform: "uppercase"
     }
     const id = useParams().id
     console.log('Course here, courses: ', courses)
-    const course = courses.find(n => n.id === id)
+    let course = courses.find(n => n.id === id)
     console.log('Course here, course: ', course)
     var startDate = new Date(course.startTime)
     var endDate = new Date(course.endTime)
-
+    const handleClick = () => {
+        courseService.bookCourse(course)
+        //console.log('courseService.bookCourse(course): ', course);
+    }
     var startD = startDate.getDate()
     var startM = startDate.getMonth() + 1
     var startY = startDate.getFullYear()

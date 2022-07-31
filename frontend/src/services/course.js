@@ -24,9 +24,11 @@ const createNew = async newObject => {
     return response.data
 }
 
-const bookCourse = (id, newObject) => {
-    newObject.bookedPlaces = newObject.bookedPlaces + 1
-    const request = axios.put(`${baseUrl}/${id}`, newObject)
+const bookCourse = (newObject) => {
+    const newObjectCopy = { ...newObject, bookedPlaces: newObject.bookedPlaces + 1 }
+    console.log('inside bookCourse, newObjectCopy: ', newObjectCopy)
+
+    const request = axios.put(`${baseUrl}/${newObjectCopy.id}`, newObjectCopy)
 }
 /*
 const update = (id, newObject) => {

@@ -30,7 +30,7 @@
 |30.7.22|  2,5 | Kurssien järjestäminen ajan mukaan, debuggausta|
 |30.7.22|  0,5 | App.js:n refaktorointia|
 |30.7.22|  1   | Varausnapin ja funktion luominen|
-| 		|      | |
+|31.7.22|  1,5 | Varaamisen debuggausta|
 | 		|      | |
 | 		|      | |
 | 		|      | |
