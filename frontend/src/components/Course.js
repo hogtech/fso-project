@@ -23,9 +23,6 @@ const Course = ({ courses }) => {
     var startDate = new Date(course.startTime)
     var endDate = new Date(course.endTime)
     const handleClick = async () => {
-        console.log('booked places: ', course.bookedPlaces)
-        console.log('total places: ', course.totalPlaces)
-        console.log('booked < total', course.bookedPlaces < course.totalPlaces)
         if (course.bookedPlaces < course.totalPlaces) {
             try {
                 await courseService.bookCourse(course)
@@ -34,9 +31,6 @@ const Course = ({ courses }) => {
             }
             setCourse({ ...course, bookedPlaces: course.bookedPlaces + 1 })
         }
-        //courseService.bookCourse(course)
-        //console.log('courseService.bookCourse(course): ', course);
-
     }
     var startD = startDate.getDate()
     var startM = startDate.getMonth() + 1
