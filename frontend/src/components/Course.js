@@ -4,21 +4,39 @@ import {
 } from "react-router-dom"
 import { Button } from 'react-bootstrap'
 import courseService from '../services/course'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const Course = ({ courses }) => {
+    useEffect(() => {
+        setCourse(courses.find(n => n.id === id))
+    }, [])
+    const [course, setCourse] = useState('')
     const upperc = {
         textTransform: "uppercase"
     }
     const id = useParams().id
-    console.log('Course here, courses: ', courses)
-    let course = courses.find(n => n.id === id)
+    //console.log('Course here, courses: ', courses)
+    //let course = courses.find(n => n.id === id)
+
+
     console.log('Course here, course: ', course)
     var startDate = new Date(course.startTime)
     var endDate = new Date(course.endTime)
-    const handleClick = () => {
-        courseService.bookCourse(course)
+    const handleClick = async () => {
+        console.log('booked places: ', course.bookedPlaces)
+        console.log('total places: ', course.totalPlaces)
+        console.log('booked < total', course.bookedPlaces < course.totalPlaces)
+        if (course.bookedPlaces < course.totalPlaces) {
+            try {
+                await courseService.bookCourse(course)
+            } catch (error) {
+                console.log('courseService error: ', error)
+            }
+            setCourse({ ...course, bookedPlaces: course.bookedPlaces + 1 })
+        }
+        //courseService.bookCourse(course)
         //console.log('courseService.bookCourse(course): ', course);
+
     }
     var startD = startDate.getDate()
     var startM = startDate.getMonth() + 1
