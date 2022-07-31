@@ -7,10 +7,6 @@ import courseService from '../services/course'
 import { useEffect } from "react"
 
 const Course = ({ courses }) => {
-    useEffect(() => {
-        course = courses.find(n => n.id === id)
-        console.log('inside useeffect');
-    })
     const upperc = {
         textTransform: "uppercase"
     }
