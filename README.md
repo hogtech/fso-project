@@ -95,37 +95,58 @@ Removes all bikeStations in database:
 
 ## Record of working hours
 
-|   day   | time | what did I do                                                                                                |
-| :-----: | :--- | :----------------------------------------------------------------------------------------------------------- |
-| 1.7.22  | 1    | Alustavat työt                                                                                               |
-| 4.7.22  | 2    | Karkea rakenteen suunnittelu, frontendin muokkaus projektin pohjaksi, frontendin userin toiminnallisuutta #1 |
-| 4.7.22  | 1,5  | Frontendin userin toiminnallisuutta #2, käyttäjän luominen frontendistä käsin                                |
-| 4.7.22  | 1,5  | Course: model, controller, service                                                                           |
-| 5.7.22  | 2    | Course: service                                                                                              |
-| 5.7.22  | 1,5  | Coursen implementointi                                                                                       |
-| 5.7.22  | 2,5  | Coursen implementointi, courseReducer                                                                        |
-| 5.7.22  | 2    | App.js/course debuggaus, courseReducer                                                                       |
-| 5.7.22  | 1    | App.js/course debuggaus                                                                                      |
-| 6.7.22  | 2    | App.js/course debuggaus                                                                                      |
-| 6.7.22  | 2    | App.js/course debuggaus                                                                                      |
-| 6.7.22  | 2    | App.js/course debuggaus                                                                                      |
-| 6.7.22  | 0,5  | App.js/course debuggaus valmis                                                                               |
-| 6.7.22  | 2    | CourseForm, Routing                                                                                          |
-| 6.7.22  | 1    | Routing, Menu, Courses                                                                                       |
-| 19.7.22 | 2    | Course-dataa syötetty, piirretty kuva näkymistä, Course-modelia muutettu                                     |
-| 19.7.22 | 2,5  | Course-moduuli + reititys + courset viikonpäivittäin                                                         |
-| 19.7.22 | 2    | Course-moduuli + Date + Signup                                                                               |
-| 20.7.2  | 2    | Signupin kirjoittamista, kurssien järjestäminen kellonajan mukaan                                            |
-| 28.7.22 | 2,5  | Linkkien lisääminen kursseihin, Lisää kurssi -sivun tekemistä, coursen schema                                |
-| 29.7.22 | 3    | Kurssien lisäyksen tekoa, kurssien listausta päivämäärän ja viikonnumeron perusteella                        |
-| 29.7.22 | 1    | Kurssien yksityiskohtanäkymä                                                                                 |
-| 29.7.22 | 2,5  | Syötetty kurssidataa, tehty dropdown viikon valitsemiseksi                                                   |
-| 30.7.22 | 1    | Kurssien listaus viikoittain                                                                                 |
-| 30.7.22 | 1,5  | Kurssien listaus viikoittain                                                                                 |
-| 30.7.22 | 2,5  | Kurssien järjestäminen ajan mukaan, debuggausta                                                              |
-| 30.7.22 | 0,5  | App.js:n refaktorointia                                                                                      |
-| 30.7.22 | 1    | Varausnapin ja funktion luominen                                                                             |
-| 31.7.22 | 1,5  | Varaamisen debuggausta                                                                                       |
-| 31.7.22 | 2,5  | Coursen debuggausta                                                                                          |
-| 11.8.22 | 1,5  | README.md:n tekoa                                                                                            |
-|   yht   | 54   |
+|  day   | time | what did I do          |
+| :----: | :--- | :--------------------- |
+| 1.7.22 | 1    | Alustavat työt         | 2.7.22 | 0,5 | initial commit |
+| 2.7.22 | 0,5  | documentation          |
+| 2.7.22 | 0,5  | more documentation     |
+| 2.7.22 | 0,25 | README.md              |
+| 2.7.22 | 0,25 | README.md              |
+| 2.7.22 | 0,5  | Part 7's code for base |
+| 2.7.22 | 0,5  | Backend skeleton       |
+
+| 4.7.22  | 1,5  |Fronendin userin toiminnallisuutta #1|
+| 4.7.22  | 0,25 |Tuntikirjanpito|
+| 4.7.22  | 0,25 |Tuntikirjanpito2|                                
+| 4.7.22  | 3    |Signup implemented|
+| 4.7.22  | 0,25 |Tuntikirjanpito 3|                                
+| 4.7.22  | 0,25 |Tuntikirjanpito 4|
+| 4.7.22  | 1    |Course: model, controller|
+| 5.7.22  | 2    |Course: controller|
+| 5.7.22  | 1,5  |Coursen implementointi|
+| 5.7.22  | 2,5  |Tracking|
+| 5.7.22  | 2    |Implementation of Course, courseReducer|
+| 5.7.22  | 1    |Debugging App.js/course|
+| 6.7.22  | 2    |Debugging App.js/course#2|
+| 6.7.22  | 2    |Debugging App.js/course#3|
+| 6.7.22  | 2    |Debugging App.js/course#4|
+| 6.7.22  | 0,5  |Debugging App / course done|
+| 6.7.22  | 2    |CourseForm, Routing|
+| 6.7.22  | 1    |Routing, Menu, Courses|
+| 19.7.22 | 2    |Views, Course model, added some course data|
+| 19.7.22 | 2,5  |Time sheet|
+| 19.7.22 | 2    |Course module + routing + courses by week days|
+| 19.7.22 | 0,25 |Course module + Date + Signup|
+| 20.7.22 | 2    |Writing signup|
+| 25.7.22 | 0,5  |Update README.md|
+| 28.7.22 | 2,5  |Adding links to courses, add course -page, course's schema|
+| 29.7.22 | 3    |Adding courses, listing courses based on date and week number|
+| 29.7.22 | 1    |Course details page|
+| 29.7.22 | 2,5  |Entered course data, kade dropdown for choosing week|
+| 29.7.22 | 0,5  |Time keeping document|
+| 30.7.22 | 1    |Listing courses by week|
+| 30.7.22 | 1,5  |Listing courses by week|
+| 30.7.22 | 2,5  |Listing courses based on time, debugging|
+| 30.7.22 | 0,5  |Refactoring App.js|
+| 30.7.22 | 1    |Add booking button + function|
+| 30.7.22 | 0,25 |Time keeping|
+| 30.7.22 | 0,25 |Time keeping|
+| 31.7.22 | 1,5  |Debugging booking|
+| 31.7.22 | 0,5  |Removed useEffect|
+| 31.7.22 | 2,5  |Debugging Course|
+| 31.7.22 | 0,25 |Update README.md|
+| 31.7.22 | 0,25 |Removed some console.logs|
+| 31.7.22 | 0,25 |Moving some items to stash|
+| 11.8.22 | 2,5  |Writing README.md|
+| 11.8.22 | 0,25 |Counted hours -> total|
+|  total  | 61   |
