@@ -1,119 +1,131 @@
-# Fso-project
+# fso-project
+![logo](https://raw.githubusercontent.com/hhokka/dev-academy-2022-fall-exercise/111dec7357e9309b79bbe22d60f7fe140a9feddd/readme/logo-generic.svg)
 
-This is a project work for Full Stack Open 2022 course.
+With this application it is possible for users to book group exercises on a gym. This application shows different instances of group exercises, offers a possibility to sign up on and create on group exercise instances. Chosen technologies include React and Node.js with Express.
 
-This application is used to keep track of a gym's bookings.
+## Configurations
+The database settings are in .env file which you get by asking (hans.hokka@gmail.com). Database is fully configured. Other than what is mentioned in "installation and running" there is no need to configure anything. 
 
-## This project is not complete yet.
 
-<!---
-[Käyttöohje](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/kayttoohje.md)
-
-[Vaatimusmäärittely](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/vaatimusmaarittely.md)
-
-[Arkkitehtuurikuvaus](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/arkkitehtuuri.md)
-
-[Testausdokumentti](https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md)
--->
-
-[Record of working hours](https://github.com/hhokka/fso-project/blob/main/dokumentaatio/tuntikirjanpito.md)
-
-<!---
-
-## Releaset
-
-[Viikko 5](https://github.com/mluukkai/OtmTodoApp/releases/tag/viikko5)
-
-## Komentorivitoiminnot
-
-### Testaus
-
-Testit suoritetaan komennolla
-
+## Installation and running
+### Development
+Clone the repository to your own device:
 ```
-mvn test
+git clone https://github.com/hhokka/fso-project.git
 ```
-
-Testikattavuusraportti luodaan komennolla
-
+Install and run **backend**:
+Copy .env to project root
 ```
-mvn jacoco:report
+cd fson-project
+cd backend
+npm install
+npm run dev
+```
+Install and run **frontend**:
+
+Open new command line window
+```
+cd fso-project
+cd frontend
+npm install
+npm start
+```
+Go to address http://localhost:3000
+
+### Production
+Clone the repository to your own device:
+```
+git clone https://github.com/hhokka/fso-project.git
 ```
 
-Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
-
-### Suoritettavan jarin generointi
-
-Komento
-
+Build **frontend** and then serve it:
 ```
-mvn package
+cd fso-project
+cd frontend
+npm install
+npm run build
+npm install -g serve
+serve -s build
 ```
-
-generoi hakemistoon _target_ suoritettavan jar-tiedoston _OtmTodoApp-1.0-SNAPSHOT.jar_
-
-### JavaDoc
-
-JavaDoc generoidaan komennolla
-
+Start serving the **backend:**
+Copy .env to project root
 ```
-mvn javadoc:javadoc
+cd fso-project
+cd backend
+npm run start
 ```
+Go to address http://localhost:3000
+### Testing
 
-JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
+Tests are run with this command
+```
+cypress:open
+```
+## Using the application
 
-### Checkstyle
+Signin information: email: hhokka, password: salainen
 
-Tiedostoon [checkstyle.xml](https://github.com/mluukkai/OtmTodoApp/blob/master/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+TODO: guide to using the application
 
+## API
+Returns all journeys in database:
 ```
- mvn jxr:jxr checkstyle:checkstyle
+GET http://localhost:3001/api/journeys
 ```
+Adds a journey to database:
+    
+    POST http://localhost:3001/api/journeys + payload
+Removes all journeys in database:
+    
+    POST http://localhost:3001/api/journeys/reset
 
-Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
+Returns all bikeStations in database:
+    
+    GET http://localhost:3001/api/bikeStations
+Adds a bikeStation to database:
+    
+    POST http://localhost:3001/api/bikeStations + payload
 
-## Javan ja Mavenin asennusohjeita Macille Homebrew'n kautta
+Removes all bikeStations in database:
+    
+    POST http://localhost:3001/api/bikeStations/reset
 
-Homebrew on Linuxin pakettimanagereita vastaava pakettimanageri MacOS-käyttöjärjestelmälle. Nämä ohjeet toimivat ainakin MacOS:n versiolle 10.15. [Asennusohjeet Homebrew'lle.](https://brew.sh/index_fi)
+## TODO
+- Because MongoDB's quota is too small to load all the data, the application can load only one dataset. It would be good to have a paid subscription of MongoDB witch a larger quota. Application also validates only one of the datasets.
 
-### Javan asennus
-Homebrew'n asennuksen jälkeen Javan saa asennettua Macille yksinkertaisesti esimerkiksi komennolla
+## Record of working hours
 
-```
-brew install adoptopenjdk
-```
-### Mavenin asennus ja paluu Javan versioon 11
-Mavenin saa asennettua komennolla
-
-```
-brew install maven
-```
-
-Tällöin Mavenin oletuksena käyttämä Java-versio on Java 15. Java-versioon 11 päästään asentamalla Java 11 komennolla
-
-```
-brew install java11
-```
-Lisäksi täytyy osoittaa Mavenille Javan versio 11. Mavenin versiolla 3.6.3_1 tämä tapahtuu muokkaamalla tiedostoa: /usr/local/Cellar/maven/3.6.3_1/bin/mvn esim. nanolla komennolla
-
-```
-sudo nano /usr/local/Cellar/maven/3.6.3_1/bin/mvn
-```
-HUOM Muista tarkistaa mikä versio Mavenista asentui ja muokkaa tiedostopolkuun oikea versio version 3.6.3_1 tilalle
-
-Muokkaa rivi
-```
-JAVA_HOME="${JAVA_HOME:-/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home}" exec "/usr/local/Cellar/maven/
-```
-Muotoon
-```
-JAVA_HOME="${JAVA_HOME:-/usr/local/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home}" exec "/usr/local/Cellar/maven/
-```
-Eli muokkaa polkuun ```openjdk``` ```openjdk@11``` ja tallenna tiedosto. Nyt voit tarkistaa komennolla ```mvn --version```, että Maven käyttää Javan versiota 11.
-
-Käyttöjärjestelmän Java version vaihtaminen onnistuu esimerkiksi lisäämällä tiedoston: ```~/.zshrc``` (vanhemmilla MacOS-käyttöjärjestelmillä ```~/.bashrc```) loppuun rivi
-```
-export JAVA_HOME=/usr/local/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home/
-```
-Muista käynnistää lisäyksen jälkeen terminaali uudestaan, jolloin komento ```java --version``` näyttää versioksi 11.
--->
+|   day   | time | what did I do                                                                                                |
+| :-----: | :--- | :----------------------------------------------------------------------------------------------------------- |
+| 1.7.22  | 1    | Alustavat työt                                                                                               |
+| 4.7.22  | 2    | Karkea rakenteen suunnittelu, frontendin muokkaus projektin pohjaksi, frontendin userin toiminnallisuutta #1 |
+| 4.7.22  | 1,5  | Frontendin userin toiminnallisuutta #2, käyttäjän luominen frontendistä käsin                                |
+| 4.7.22  | 1,5  | Course: model, controller, service                                                                           |
+| 5.7.22  | 2    | Course: service                                                                                              |
+| 5.7.22  | 1,5  | Coursen implementointi                                                                                       |
+| 5.7.22  | 2,5  | Coursen implementointi, courseReducer                                                                        |
+| 5.7.22  | 2    | App.js/course debuggaus, courseReducer                                                                       |
+| 5.7.22  | 1    | App.js/course debuggaus                                                                                      |
+| 6.7.22  | 2    | App.js/course debuggaus                                                                                      |
+| 6.7.22  | 2    | App.js/course debuggaus                                                                                      |
+| 6.7.22  | 2    | App.js/course debuggaus                                                                                      |
+| 6.7.22  | 0,5  | App.js/course debuggaus valmis                                                                               |
+| 6.7.22  | 2    | CourseForm, Routing                                                                                          |
+| 6.7.22  | 1    | Routing, Menu, Courses                                                                                       |
+| 19.7.22 | 2    | Course-dataa syötetty, piirretty kuva näkymistä, Course-modelia muutettu                                     |
+| 19.7.22 | 2,5  | Course-moduuli + reititys + courset viikonpäivittäin                                                         |
+| 19.7.22 | 2    | Course-moduuli + Date + Signup                                                                               |
+| 20.7.2  | 2    | Signupin kirjoittamista, kurssien järjestäminen kellonajan mukaan                                            |
+| 28.7.22 | 2,5  | Linkkien lisääminen kursseihin, Lisää kurssi -sivun tekemistä, coursen schema                                |
+| 29.7.22 | 3    | Kurssien lisäyksen tekoa, kurssien listausta päivämäärän ja viikonnumeron perusteella                        |
+| 29.7.22 | 1    | Kurssien yksityiskohtanäkymä                                                                                 |
+| 29.7.22 | 2,5  | Syötetty kurssidataa, tehty dropdown viikon valitsemiseksi                                                   |
+| 30.7.22 | 1    | Kurssien listaus viikoittain                                                                                 |
+| 30.7.22 | 1,5  | Kurssien listaus viikoittain                                                                                 |
+| 30.7.22 | 2,5  | Kurssien järjestäminen ajan mukaan, debuggausta                                                              |
+| 30.7.22 | 0,5  | App.js:n refaktorointia                                                                                      |
+| 30.7.22 | 1    | Varausnapin ja funktion luominen                                                                             |
+| 31.7.22 | 1,5  | Varaamisen debuggausta                                                                                       |
+| 31.7.22 | 2,5  | Coursen debuggausta                                                                                          |
+| 11.8.22 | 1,5  | README.md:n tekoa                                                                                            |
+|   yht   | 54   |
