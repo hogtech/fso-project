@@ -4,8 +4,6 @@ import { Button } from 'react-bootstrap'
 import '../index.css'
 
 const SignupForm = ({ onSignup }) => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')

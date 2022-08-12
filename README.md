@@ -154,4 +154,5 @@ Removes all bikeStations in database:
 | 12.8.22 | 3     | Cleaned code                                                  |
 | 12.8.22 | 2     | Changes is README.md                                          |
 | 12.8.22 | 2,5   | Debugged Eslint                                               |
-|  total  | 63,25 |
+| 12.8.22 | 1,25  | Debugged signupform.js                                        |
+|  total  | 71,25 |
