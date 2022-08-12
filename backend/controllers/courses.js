@@ -1,54 +1,53 @@
 const router = require('express').Router()
-const User = require('../models/user')
 const Course = require('../models/course')
 router.get('/', async (request, response) => {
-    console.log('inside controller courses')
-    const courses = await Course
-        .find({})
+  console.log('inside controller courses')
+  const courses = await Course
+    .find({})
 
-    response.json(courses)
+  response.json(courses)
 })
 
 router.post('/', async (request, response) => {
-    console.log('inside courses controller post')
-    const { name, startTime, endTime, instructor, bookedPlaces, totalPlaces, description } = request.body
-    const course = new Course({
-        name,
-        startTime,
-        endTime,
-        instructor,
-        bookedPlaces,
-        totalPlaces,
-        description
+  console.log('inside courses controller post')
+  const { name, startTime, endTime, instructor, bookedPlaces, totalPlaces, description } = request.body
+  const course = new Course({
+    name,
+    startTime,
+    endTime,
+    instructor,
+    bookedPlaces,
+    totalPlaces,
+    description
 
-    })
-    const savedCourse = await course.save()
-    response.status(201).json(savedCourse)
+  })
+  const savedCourse = await course.save()
+  response.status(201).json(savedCourse)
 })
 
 router.delete('/:id', async (request, response) => {
-    console.log('inside courses/delete');
-    const courseToDelete = await Course.findById(request.params.id)
-    if (!courseToDelete) {
-        return response.status(204).end()
-    }
+  console.log('inside courses/delete')
+  const courseToDelete = await Course.findById(request.params.id)
+  if (!courseToDelete) {
+    return response.status(204).end()
+  }
 
-    await Course.findByIdAndRemove(request.params.id)
-    response.status(204).end()
+  await Course.findByIdAndRemove(request.params.id)
+  response.status(204).end()
 })
 
 router.put('/:id', async (request, response) => {
-    console.log('backend put request.body: ', request.body)
-    const course = request.body
+  console.log('backend put request.body: ', request.body)
+  const course = request.body
 
-    const updatedCourse = await Course
-        .findByIdAndUpdate(
-            request.params.id,
-            course,
-            { new: true, runValidators: true, context: 'query' }
-        )
+  const updatedCourse = await Course
+    .findByIdAndUpdate(
+      request.params.id,
+      course,
+      { new: true, runValidators: true, context: 'query' }
+    )
 
-    response.json(updatedCourse)
+  response.json(updatedCourse)
 })
 
 /* router.post('/', async (request, response) => {
