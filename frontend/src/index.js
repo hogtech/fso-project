@@ -5,10 +5,10 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-console.log('store.getState(): ', store.getState());
+console.log('store.getState(): ', store.getState())
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>, document.getElementById('root'))
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>, document.getElementById('root'))

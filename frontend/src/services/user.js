@@ -6,35 +6,35 @@ let token = null
 const STORAGE_KEY = 'loggedBlogAppUser'
 
 const setUser = (user) => {
-    window.localStorage.setItem(
-        STORAGE_KEY, JSON.stringify(user)
-    )
-    token = user.token
+  window.localStorage.setItem(
+    STORAGE_KEY, JSON.stringify(user)
+  )
+  token = user.token
 }
 
 const getUser = () => {
-    const loggedUserJSON = window.localStorage.getItem(STORAGE_KEY)
-    if (loggedUserJSON) {
-        const user = JSON.parse(loggedUserJSON)
-        token = user.token
-        return user
-    }
+  const loggedUserJSON = window.localStorage.getItem(STORAGE_KEY)
+  if (loggedUserJSON) {
+    const user = JSON.parse(loggedUserJSON)
+    token = user.token
+    return user
+  }
 
-    return null
+  return null
 }
 
 const clearUser = () => {
-    localStorage.clear()
-    token = null
+  localStorage.clear()
+  token = null
 }
 
 const getToken = () => token
 
 const signup = async (signupInfo) => {
-    console.log('signup here: ', signupInfo)
-    const response = await axios.post(baseUrl, signupInfo)
+  console.log('signup here: ', signupInfo)
+  const response = await axios.post(baseUrl, signupInfo)
 
-    return response.data
+  return response.data
 }
 
 
@@ -50,5 +50,5 @@ const signup = async (signupInfo) => {
 } */
 
 export default {
-    setUser, getUser, clearUser, getToken, signup
+  setUser, getUser, clearUser, getToken, signup
 }

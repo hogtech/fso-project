@@ -56,11 +56,11 @@ npm run start
 ```
 Go to address http://localhost:3000
 ### Testing
-
-Tests are run with this command
+There are no tests currently
+<!-- Tests are run with this command
 ```
 cypress:open
-```
+``` -->
 ## Using the application
 
 Signin information: email: hhokka, password: salainen

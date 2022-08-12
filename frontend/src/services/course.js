@@ -4,31 +4,32 @@ import userService from './user'
 const baseUrl = '/api/courses'
 
 const config = () => {
-    return {
-        headers: {
-            Authorization: `bearer ${userService.getToken()}`
-        },
-    }
+  return {
+    headers: {
+      Authorization: `bearer ${userService.getToken()}`
+    },
+  }
 }
 
 const getAll = async () => {
-    const response = await axios.get(baseUrl)
-    console.log('course.js getAll, response.data: ', response.data);
-    return response.data
+  const response = await axios.get(baseUrl)
+  console.log('course.js getAll, response.data: ', response.data)
+  return response.data
 }
 
 const createNew = async newObject => {
-    console.log('createNew here')
-    console.log('createNew description: ', newObject.description);
-    const response = await axios.post(baseUrl, newObject, config())
-    return response.data
+  console.log('createNew here')
+  console.log('createNew description: ', newObject.description)
+  const response = await axios.post(baseUrl, newObject, config())
+  return response.data
 }
 
 const bookCourse = (newObject) => {
 
-    const newObjectCopy = { ...newObject, bookedPlaces: newObject.bookedPlaces + 1 }
-    console.log('inside bookCourse, newObjectCopy: ', newObjectCopy)
-    const request = axios.put(`${baseUrl}/${newObjectCopy.id}`, newObjectCopy)
+  const newObjectCopy = { ...newObject, bookedPlaces: newObject.bookedPlaces + 1 }
+  console.log('inside bookCourse, newObjectCopy: ', newObjectCopy)
+  // eslint-disable-next-line no-unused-vars
+  const request = axios.put(`${baseUrl}/${newObjectCopy.id}`, newObjectCopy)
 
 }
 /*
