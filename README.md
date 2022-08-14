@@ -4,6 +4,8 @@
 With this application it is possible for users to book group exercises on a gym. This application shows different instances of group exercises, offers a possibility to sign up and create group exercise instances. Chosen technologies include React and Node.js with Express.
 
 **This application is not ready yet.**
+## Application's running version
+The most recent version of the app is running on https://guarded-bastion-37809.herokuapp.com/
 
 ## Configurations
 The database settings are in .env file which you get by asking (hans.hokka@gmail.com). Database is fully configured. Other than what is mentioned in "installation and running" there is no need to configure anything. 
@@ -155,4 +157,5 @@ Removes all bikeStations in database:
 | 12.8.22 | 2     | Changes is README.md                                          |
 | 12.8.22 | 2,5   | Debugged Eslint                                               |
 | 12.8.22 | 1,25  | Debugged signupform.js                                        |
-|  total  | 71,25 |
+| 14.8.22 | 2,5   | Transferring application to web                               |
+|  total  | 73,75 |
