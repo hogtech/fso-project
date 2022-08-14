@@ -159,4 +159,5 @@ Removes all bikeStations in database:
 | 12.8.22 | 1,25  | Debugged signupform.js                                        |
 | 14.8.22 | 2,5   | Transferring application to web                               |
 | 14.8.22 | 6,5   | Debugging installing to Heroku (asked for help)               |
-|  total  | 79,25 |
+| 14.8.22 | 0,5   | Added hours                                                   |
+|  total  | 79,75 |
